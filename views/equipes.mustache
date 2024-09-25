@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des équipes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    /* Styles pour la liste des équipes */
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: white;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Style des boutons */
+    .btn {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-left: 5px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+    }
+
+    .button-group {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Liste des équipes</h1>
+  
+  <ul>
+    {{#equipes}}
+    <li>
+      {{nom}}
+
+      <!-- Boutons modifier et supprimer -->
+      <div class="button-group">
+        <a href="/equipes/{{id}}/edit" class="btn btn-edit">Modifier</a>
+
+        <!-- Formulaire pour supprimer -->
+        <form action="/equipes/{{id}}/delete" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-delete">Supprimer</button>
+        </form>
+      </div>
+    </li>
+    {{/equipes}}
+  </ul>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des personnages</title>
+  <style>
+    /* Styles pour la page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    /* Container pour les boutons en haut de la page */
+    .button-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Style des boutons */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 5px; /* Espacement entre les boutons */
+      width: 150px; /* Largeur fixe pour tous les boutons */
+      text-align: center; /* Centrer le texte du bouton */
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Grille pour 3 personnages par ligne */
+    .personnage-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .personnage-item {
+      width: 30%; /* 30% pour afficher 3 personnages par ligne avec de l'espace entre eux */
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .personnage-item img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+      border: 2px solid #ddd; /* Bordure autour de l'image */
+      padding: 5px; /* Espacement intérieur */
+      border-radius: 5px; /* Arrondir les bords de la bordure */
+    }
+
+    .personnage-buttons {
+      margin-top: 10px;
+      display: flex; /* Utiliser flex pour aligner les boutons */
+      justify-content: center; /* Centrer les boutons */
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+    }
+
+    .btn-edit {
+      background-color: #28a745;
+    }
+
+    .btn-edit:hover {
+      background-color: #218838;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Liste des personnages</h1>
+
+  <!-- Conteneur pour les boutons en haut de la page -->
+  <div class="button-container">
+   <a href="/Personnages" class="btn">Personnages👇</a>
+    <a href="/personnages/create" class="btn">Créer Personnage</a>
+   
+    <a href="/equipes" class="btn">Tout les Equipes</a>
+     <a href="/equipes/create" class="btn">Créer Equipe</a>
+  </div>
+  
+  <!-- Liste des personnages affichée en 3 colonnes -->
+  <div class="personnage-list">
+    {{#personnages}}
+    <div class="personnage-item">
+      <h2>{{nom}}</h2>
+      <p><strong>Équipe :</strong> {{equipe}}</p>
+      <p>{{description}}</p>
+      <img src="{{photo}}" alt="{{nom}}">
+      
+      <!-- Conteneur pour les boutons de modification et de suppression -->
+      <div class="personnage-buttons">
+        <form action="/personnages/{{id}}/delete" method="POST">
+          <button type="submit" class="btn btn-delete">Supprimer</button>
+        </form>
+        <a href="/personnages/{{id}}/edit">
+          <button class="btn btn-edit">Modifier</button>
+        </a>
+      </div>
+    </div>
+    {{/personnages}}
+  </div>
+
+</body>
+</html>

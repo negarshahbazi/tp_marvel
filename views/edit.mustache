@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer un nouveau personnage</title>
+  <style>
+    /* Styles pour le formulaire et la page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    /* Conteneur pour le formulaire */
+    .form-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      margin: auto;
+    }
+
+    /* Styles pour les labels */
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Styles pour les champs du formulaire */
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    /* Styles pour le bouton */
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Conteneur avec un cadre pour le formulaire -->
+  <div class="form-container">
+
+
+<h1>Modifier le personnage</h1>
+<form action="/personnages/{{personnage.id}}/edit" method="POST">
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" name="nom" value="{{personnage.nom}}" required>
+  
+  <label for="description">Description :</label>
+  <textarea id="description" name="description">{{personnage.description}}</textarea>
+  
+  <label for="photo">URL de la photo :</label>
+  <input type="text" id="photo" name="photo" value="{{personnage.photo}}">
+  
+  <label for="equipe">Équipe :</label>
+  <select id="equipe" name="equipe_id">
+    <option value="">Aucune équipe</option>
+    {{#equipes}}
+    <option value="{{id}}" {{#selected}}{{id}}{{/selected}}>{{nom}}</option>
+    {{/equipes}}
+  </select>
+  
+  <button type="submit">Modifier</button>
+</form>
+  </div>
+
+</body>
+</html>
